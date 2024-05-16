@@ -20,6 +20,11 @@ public class CredenciaisService extends BaseService<Credenciais, CredenciaisRepo
     CredenciaisRepository credenciaisRepository;
     @Autowired
     BCryptPasswordEncoder encoder;
+
+    public Optional<Credenciais> findByUsername(String username){
+        return credenciaisRepository.findCredenciaisByUsername(username);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Credenciais> credenciais = repository.findCredenciaisByUsername(username);

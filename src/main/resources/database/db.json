@@ -1,0 +1,951 @@
+{
+    "hits": [
+      {
+        "_index": "api_publica_trf5",
+        "_type": "_doc",
+        "_id": "TRF5_7_G1_12190_08094353120174058200",
+        "_score": 13.437424,
+        "_source": {
+          "numeroProcesso": "08094353120174058200",
+          "classe": {
+            "codigo": 7,
+            "nome": "Procedimento Comum Cível"
+          },
+          "sistema": {
+            "codigo": 1,
+            "nome": "Pje"
+          },
+          "formato": {
+            "codigo": 1,
+            "nome": "Eletrônico"
+          },
+          "tribunal": "TRF5",
+          "dataHoraUltimaAtualizacao": "2022-08-16T06:15:44.017Z",
+          "grau": "G1",
+          "@timestamp": "2023-10-06T05:29:18.355Z",
+          "dataAjuizamento": "2017-12-04T17:09:26.000Z",
+          "id": "TRF5_7_G1_12190_08094353120174058200",
+          "nivelSigilo": 0,
+          "orgaoJulgador": {
+            "codigoMunicipioIBGE": 0,
+            "codigo": 12190,
+            "nome": "3ª Vara Federal"
+          },
+          "assuntos": [
+            {
+              "codigo": 9517,
+              "nome": "Causas Supervenientes à Sentença"
+            }
+          ]
+        }
+      },
+      {
+        "_index": "api_publica_trf5",
+        "_type": "_doc",
+        "_id": "TRF5_198_G2_19378_08094353120174058200",
+        "_score": 13.330764,
+        "_source": {
+          "numeroProcesso": "08094353120174058200",
+          "classe": {
+            "codigo": 198,
+            "nome": "Apelação Cível"
+          },
+          "sistema": {
+            "codigo": 1,
+            "nome": "Pje"
+          },
+          "formato": {
+            "codigo": 1,
+            "nome": "Eletrônico"
+          },
+          "tribunal": "TRF5",
+          "dataHoraUltimaAtualizacao": "2022-09-24T23:30:01.500Z",
+          "grau": "G2",
+          "@timestamp": "2023-10-06T00:47:33.649Z",
+          "dataAjuizamento": "2017-12-04T17:09:26.000Z",
+          "movimentos": [
+            {
+              "codigo": 26,
+              "nome": "Distribuição",
+              "dataHora": "2019-04-24T20:24:51.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2019-04-26T18:28:58.000Z"
+            },
+            {
+              "codigo": 417,
+              "nome": "Inclusão em pauta",
+              "dataHora": "2019-10-07T09:33:33.000Z"
+            },
+            {
+              "codigo": 873,
+              "nome": "Deliberação em Sessão",
+              "dataHora": "2019-10-29T15:55:52.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2019-10-29T16:27:56.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2019-11-19T17:00:56.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2019-12-09T13:45:06.000Z"
+            },
+            {
+              "codigo": 417,
+              "nome": "Inclusão em pauta",
+              "dataHora": "2020-02-17T11:47:38.000Z"
+            },
+            {
+              "codigo": 873,
+              "nome": "Deliberação em Sessão",
+              "dataHora": "2020-03-10T15:47:15.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-03-10T20:01:01.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-03-31T10:04:35.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2020-04-29T15:33:16.000Z"
+            },
+            {
+              "codigo": 417,
+              "nome": "Inclusão em pauta",
+              "dataHora": "2020-05-07T11:42:17.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-01T17:57:22.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2019-04-26T00:00:21.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-10-07T10:34:38.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-10-07T10:34:59.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-10-18T00:04:06.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-10-18T00:04:07.000Z"
+            },
+            {
+              "codigo": 50142,
+              "nome": "",
+              "dataHora": "2019-10-21T23:46:28.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2019-10-23T00:00:31.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2019-10-29T15:43:37.000Z"
+            },
+            {
+              "codigo": 238,
+              "nome": "Provimento em Parte",
+              "dataHora": "2019-10-29T16:27:29.000Z"
+            },
+            {
+              "codigo": 239,
+              "nome": "Não-Provimento",
+              "dataHora": "2019-10-29T16:27:29.000Z"
+            },
+            {
+              "codigo": 1,
+              "nome": "Magistrado",
+              "dataHora": "2019-10-29T16:27:29.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2019-10-29T16:27:29.000Z"
+            },
+            {
+              "codigo": 50144,
+              "nome": "",
+              "dataHora": "2019-11-04T13:09:24.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-11-05T06:53:02.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-11-05T06:53:06.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-11-09T00:05:04.000Z"
+            },
+            {
+              "codigo": 50165,
+              "nome": "",
+              "dataHora": "2019-11-19T17:00:56.000Z"
+            },
+            {
+              "codigo": 50112,
+              "nome": "",
+              "dataHora": "2019-11-19T17:00:57.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-11-30T00:00:46.000Z"
+            },
+            {
+              "codigo": 50118,
+              "nome": "",
+              "dataHora": "2019-12-06T18:28:27.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-02-17T14:24:41.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-02-17T14:24:53.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-02-27T11:43:43.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-02-27T11:43:44.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2020-03-10T15:23:24.000Z"
+            },
+            {
+              "codigo": 1,
+              "nome": "Magistrado",
+              "dataHora": "2020-03-10T19:59:35.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-03-10T19:59:35.000Z"
+            },
+            {
+              "codigo": 200,
+              "nome": "Não-Acolhimento de Embargos de Declaração",
+              "dataHora": "2020-03-10T19:59:35.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-03-17T07:03:12.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-03-17T07:03:53.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-03-21T00:00:10.000Z"
+            },
+            {
+              "codigo": 50165,
+              "nome": "",
+              "dataHora": "2020-03-31T10:04:35.000Z"
+            },
+            {
+              "codigo": 50112,
+              "nome": "",
+              "dataHora": "2020-03-31T10:04:36.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-04-11T00:02:09.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-05-11T09:11:18.000Z"
+            },
+            {
+              "codigo": 897,
+              "nome": "Retirada de pauta",
+              "dataHora": "2020-05-11T16:33:45.000Z"
+            },
+            {
+              "codigo": 50129,
+              "nome": "",
+              "dataHora": "2020-05-15T04:56:15.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-05-15T16:49:05.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-05-15T16:50:39.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-05-15T16:52:44.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-05-15T16:54:46.000Z"
+            },
+            {
+              "codigo": 50127,
+              "nome": "",
+              "dataHora": "2020-05-18T15:38:56.000Z"
+            },
+            {
+              "codigo": 12164,
+              "nome": "Outras Decisões",
+              "dataHora": "2020-05-29T21:51:22.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-01T18:10:06.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-02T17:59:01.000Z"
+            },
+            {
+              "codigo": 50129,
+              "nome": "",
+              "dataHora": "2020-06-02T18:01:48.000Z"
+            },
+            {
+              "codigo": 50152,
+              "nome": "",
+              "dataHora": "2020-06-03T16:49:48.000Z"
+            },
+            {
+              "codigo": 22,
+              "nome": "Baixa Definitiva",
+              "dataHora": "2020-06-03T16:53:21.000Z"
+            }
+          ],
+          "id": "TRF5_198_G2_19378_08094353120174058200",
+          "nivelSigilo": 0,
+          "orgaoJulgador": {
+            "codigoMunicipioIBGE": 0,
+            "codigo": 19378,
+            "nome": "Desemb. Fed. Cid Marconi"
+          },
+          "assuntos": [
+            {
+              "codigo": 9988,
+              "nome": "Anistia Política"
+            }
+          ]
+        }
+      },
+      {
+        "_index": "api_publica_trf5",
+        "_type": "_doc",
+        "_id": "TRF5_198_G2_19369_08094353120174058200",
+        "_score": 12.930169,
+        "_source": {
+          "numeroProcesso": "08094353120174058200",
+          "classe": {
+            "codigo": 198,
+            "nome": "Apelação Cível"
+          },
+          "sistema": {
+            "codigo": 1,
+            "nome": "Pje"
+          },
+          "formato": {
+            "codigo": 1,
+            "nome": "Eletrônico"
+          },
+          "tribunal": "TRF5",
+          "dataHoraUltimaAtualizacao": "2022-08-24T04:05:11.443Z",
+          "grau": "G2",
+          "@timestamp": "2023-10-06T05:01:01.438Z",
+          "dataAjuizamento": "2017-12-04T17:09:26.000Z",
+          "id": "TRF5_198_G2_19369_08094353120174058200",
+          "nivelSigilo": 0,
+          "orgaoJulgador": {
+            "codigoMunicipioIBGE": 0,
+            "codigo": 19369,
+            "nome": "Desemb. Fed. Cid Marconi"
+          },
+          "assuntos": [
+            {
+              "codigo": 9988,
+              "nome": "Anistia Política"
+            }
+          ]
+        }
+      },
+      {
+        "_index": "api_publica_trf5",
+        "_type": "_doc",
+        "_id": "TRF5_12078_G1_12190_08094353120174058200",
+        "_score": 12.930169,
+        "_source": {
+          "numeroProcesso": "08094353120174058200",
+          "classe": {
+            "codigo": 12078,
+            "nome": "Cumprimento de Sentença contra a Fazenda Pública"
+          },
+          "sistema": {
+            "codigo": 1,
+            "nome": "Pje"
+          },
+          "formato": {
+            "codigo": 1,
+            "nome": "Eletrônico"
+          },
+          "tribunal": "TRF5",
+          "dataHoraUltimaAtualizacao": "2022-09-25T00:48:18.045Z",
+          "grau": "G1",
+          "@timestamp": "2023-10-05T23:11:03.096Z",
+          "dataAjuizamento": "2017-12-04T17:09:26.000Z",
+          "movimentos": [
+            {
+              "codigo": 26,
+              "nome": "Distribuição",
+              "dataHora": "2017-12-04T17:33:33.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 5,
+                  "nome": "para despacho",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2017-12-17T11:36:32.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2017-12-19T17:04:23.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2018-03-06T15:19:20.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2018-04-18T15:45:40.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2018-11-21T10:56:53.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2019-02-01T14:39:53.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2019-02-26T18:05:49.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 18,
+                  "valor": 38,
+                  "nome": "em grau de recurso",
+                  "descricao": "motivo da remessa"
+                }
+              ],
+              "codigo": 123,
+              "nome": "Remessa",
+              "dataHora": "2019-04-24T20:15:54.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 6,
+                  "nome": "para decisão",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2020-06-03T17:10:45.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-04T17:37:36.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2020-06-09T16:26:51.000Z"
+            },
+            {
+              "codigo": 10966,
+              "nome": "Mudança de Classe Processual",
+              "dataHora": "2020-06-15T17:07:59.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:26.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:27.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:31.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:32.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:44.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:22:55.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:23:15.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:23:16.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:23:20.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:23:23.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T16:23:24.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T20:11:39.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T20:12:47.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T20:13:50.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2020-06-17T20:15:27.000Z"
+            },
+            {
+              "complementosTabelados": [
+                {
+                  "codigo": 3,
+                  "valor": 36,
+                  "nome": "para julgamento",
+                  "descricao": "tipo de conclusão"
+                }
+              ],
+              "codigo": 51,
+              "nome": "Conclusão",
+              "dataHora": "2021-09-22T21:52:15.000Z"
+            },
+            {
+              "codigo": 60,
+              "nome": "Expedição de documento",
+              "dataHora": "2021-11-17T09:42:25.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2017-12-17T11:35:40.000Z"
+            },
+            {
+              "codigo": 11010,
+              "nome": "Mero expediente",
+              "dataHora": "2017-12-18T19:12:10.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2017-12-21T17:23:17.000Z"
+            },
+            {
+              "codigo": 50107,
+              "nome": "",
+              "dataHora": "2018-02-27T10:50:32.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2018-03-07T17:02:32.000Z"
+            },
+            {
+              "codigo": 50142,
+              "nome": "",
+              "dataHora": "2018-04-03T18:09:13.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2018-04-10T00:00:03.000Z"
+            },
+            {
+              "codigo": 221,
+              "nome": "Procedência em Parte",
+              "dataHora": "2018-11-21T10:56:53.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2018-11-22T17:16:13.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2018-12-01T00:00:33.000Z"
+            },
+            {
+              "codigo": 50104,
+              "nome": "",
+              "dataHora": "2018-12-13T16:50:04.000Z"
+            },
+            {
+              "codigo": 11383,
+              "nome": "Ato ordinatório",
+              "dataHora": "2019-02-01T14:39:50.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-02-04T14:18:19.000Z"
+            },
+            {
+              "codigo": 50135,
+              "nome": "",
+              "dataHora": "2019-02-25T18:56:27.000Z"
+            },
+            {
+              "codigo": 11383,
+              "nome": "Ato ordinatório",
+              "dataHora": "2019-02-26T18:05:46.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2019-02-28T15:53:16.000Z"
+            },
+            {
+              "codigo": 50109,
+              "nome": "",
+              "dataHora": "2019-04-09T16:44:33.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2019-04-24T17:34:43.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2019-04-24T17:34:55.000Z"
+            },
+            {
+              "codigo": 132,
+              "nome": "Recebimento",
+              "dataHora": "2020-06-03T16:53:22.000Z"
+            },
+            {
+              "codigo": 11010,
+              "nome": "Mero expediente",
+              "dataHora": "2020-06-04T17:37:35.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-08T17:02:05.000Z"
+            },
+            {
+              "codigo": 500024,
+              "nome": "",
+              "dataHora": "2020-06-08T18:13:03.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2020-06-09T00:00:19.000Z"
+            },
+            {
+              "codigo": 500024,
+              "nome": "",
+              "dataHora": "2020-06-09T17:25:14.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2020-06-10T00:00:35.000Z"
+            },
+            {
+              "codigo": 11010,
+              "nome": "Mero expediente",
+              "dataHora": "2020-06-12T09:58:56.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-15T00:02:34.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2020-06-15T17:05:51.000Z"
+            },
+            {
+              "codigo": 50151,
+              "nome": "",
+              "dataHora": "2020-06-16T00:00:19.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:22:56.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:23:15.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:23:27.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:23:41.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:23:46.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:23:54.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:24:23.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-17T18:24:31.000Z"
+            },
+            {
+              "codigo": 50081,
+              "nome": "",
+              "dataHora": "2020-06-17T20:14:51.000Z"
+            },
+            {
+              "codigo": 50146,
+              "nome": "",
+              "dataHora": "2020-06-17T20:18:52.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-25T12:23:48.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-25T12:24:36.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-25T12:25:29.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2020-06-25T12:26:31.000Z"
+            },
+            {
+              "codigo": 50081,
+              "nome": "",
+              "dataHora": "2020-07-15T15:49:57.000Z"
+            },
+            {
+              "codigo": 196,
+              "nome": "Extinção da execução ou do cumprimento da sentença",
+              "dataHora": "2021-11-17T09:42:25.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2021-11-22T09:46:32.000Z"
+            },
+            {
+              "codigo": 50149,
+              "nome": "",
+              "dataHora": "2021-11-25T18:22:44.000Z"
+            },
+            {
+              "codigo": 50147,
+              "nome": "",
+              "dataHora": "2022-02-08T00:06:51.000Z"
+            },
+            {
+              "codigo": 50152,
+              "nome": "",
+              "dataHora": "2022-02-16T13:40:45.000Z"
+            },
+            {
+              "codigo": 22,
+              "nome": "Baixa Definitiva",
+              "dataHora": "2022-02-16T13:41:03.000Z"
+            }
+          ],
+          "id": "TRF5_12078_G1_12190_08094353120174058200",
+          "nivelSigilo": 0,
+          "orgaoJulgador": {
+            "codigoMunicipioIBGE": 0,
+            "codigo": 12190,
+            "nome": "3ª Vara Federal"
+          },
+          "assuntos": [
+            {
+              "codigo": 9517,
+              "nome": "Causas Supervenientes à Sentença"
+            }
+          ]
+        }
+      }
+    ]
+}

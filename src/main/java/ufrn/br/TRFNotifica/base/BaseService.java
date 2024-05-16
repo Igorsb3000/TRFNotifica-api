@@ -37,6 +37,7 @@ public abstract class BaseService <Model extends BaseModel, Repository extends B
      * @param id - identificador unico do objeto
      * @return Model - retorna o objeto caso ele exista no banco de dados
      * */
+    @Transactional
     public Model findById(String id){
         Model model = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada!"));
         return model;

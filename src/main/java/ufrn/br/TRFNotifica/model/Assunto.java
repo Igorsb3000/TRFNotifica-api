@@ -1,5 +1,6 @@
 package ufrn.br.TRFNotifica.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,7 +26,8 @@ public class Assunto extends BaseModel {
     @NotBlank(message = "O campo 'nome' não pode ser vazio.")
     private String nome;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "processo_id")
     private Processo processo;
 }
