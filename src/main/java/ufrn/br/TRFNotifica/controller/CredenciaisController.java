@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ufrn.br.TRFNotifica.dto.CredenciaisDTO;
+import ufrn.br.TRFNotifica.dto.UsuarioRequestDTO;
 import ufrn.br.TRFNotifica.model.Credenciais;
 import ufrn.br.TRFNotifica.model.Usuario;
 import ufrn.br.TRFNotifica.service.CredenciaisService;
@@ -19,13 +19,13 @@ public class CredenciaisController {
     CredenciaisService credenciaisService;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CredenciaisDTO credenciaisDTO){
+    public ResponseEntity<?> create(@RequestBody UsuarioRequestDTO credenciaisDTO){
         Usuario u = new Usuario();
         u.setName(credenciaisDTO.getName());
         u.setEmail(credenciaisDTO.getEmail());
 
         Credenciais c = new Credenciais();
-        c.setRoles(credenciaisDTO.getRole());
+        //c.setRoles(credenciaisDTO.getRole());
         c.setUsername(credenciaisDTO.getUsername());
         c.setPassword(credenciaisDTO.getPassword());
         c.setUsuario(u);

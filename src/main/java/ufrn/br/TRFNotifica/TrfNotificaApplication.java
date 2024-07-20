@@ -1,24 +1,32 @@
 package ufrn.br.TRFNotifica;
 
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.SortOrder;
+import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.json.JsonData;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.core.parameters.P;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import ufrn.br.TRFNotifica.config.RsaKeyProperties;
-import ufrn.br.TRFNotifica.model.Processo;
-import ufrn.br.TRFNotifica.model.Usuario;
 import ufrn.br.TRFNotifica.repository.ProcessoRepository;
 import ufrn.br.TRFNotifica.repository.UsuarioRepository;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
+@EnableScheduling
 @EnableConfigurationProperties(RsaKeyProperties.class) // Para que a Classe RsaKeyProperties seja habilitada para cuidar da autenticação via chaves publica e privada
 public class TrfNotificaApplication {
 	@Bean
@@ -30,10 +38,10 @@ public class TrfNotificaApplication {
 	public ObjectMapper objectMapper(){
 		return new ObjectMapper();
 	}
-	public static void main(String[] args) {
+
+	public static void main(String[] args) throws JSONException {
 		SpringApplication.run(TrfNotificaApplication.class, args);
 	}
-
 
 	@Autowired
 	UsuarioRepository usuarioRepository;

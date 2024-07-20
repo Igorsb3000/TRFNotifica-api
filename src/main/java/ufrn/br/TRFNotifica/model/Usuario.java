@@ -1,6 +1,8 @@
 package ufrn.br.TRFNotifica.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,6 +33,11 @@ public class Usuario extends BaseModel {
     @NotNull(message = "O campo 'email' não pode ser nulo.")
     @NotBlank(message = "O campo 'email' não pode ser vazio.")
     private String email;
+
+    @JsonIgnore
+    @JsonManagedReference
+    @OneToOne(mappedBy = "usuario")
+    private Credenciais credenciais;
 
     //@ManyToMany(cascade = {CascadeType.ALL})
     //@JoinTable(name = "notificacoes_tbl", joinColumns = { @JoinColumn(name = "usuario_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "processo_id") })

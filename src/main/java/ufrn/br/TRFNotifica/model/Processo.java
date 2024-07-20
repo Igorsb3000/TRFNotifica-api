@@ -35,9 +35,8 @@ public class Processo extends BaseModel {
     private String numero;
 
     @Column(nullable = false)
-    @NotNull(message = "O campo 'timestamp' não pode ser nulo.")
-    @NotBlank(message = "O campo 'timestamp' não pode ser vazio.")
-    private String timestamp;
+    @NotNull(message = "O campo 'classeCodigo' não pode ser nulo.")
+    private Integer classeCodigo;
 
     @Column(nullable = false)
     @NotNull(message = "O campo 'classeNome' não pode ser nulo.")
@@ -60,6 +59,10 @@ public class Processo extends BaseModel {
     private String grau;
 
     @Column(nullable = false)
+    @NotNull(message = "O campo 'orgaoJulgadorCodigo' não pode ser nulo.")
+    private Integer orgaoJulgadorCodigo;
+
+    @Column(nullable = false)
     @NotNull(message = "O campo 'orgaoJulgadorNome' não pode ser nulo.")
     @NotBlank(message = "O campo 'orgaoJulgadorNome' não pode ser vazio.")
     private String orgaoJulgadorNome;
@@ -71,14 +74,14 @@ public class Processo extends BaseModel {
 
     @JsonManagedReference
     @Column(nullable = false)
-    @OneToMany(mappedBy = "processo", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "processo", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @Valid
     private List<Assunto> assuntos;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "processo", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "processo", cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     @Valid
-    private List<Movimentacao> movimentacaos;
+    private List<Movimentacao> movimentacoes;
 
     //@ManyToMany(mappedBy="processos", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     //private Set<Usuario> usuarios;

@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import ufrn.br.TRFNotifica.config.ApiVersion;
 import ufrn.br.TRFNotifica.dto.BuscaProcessoRequestDTO;
@@ -22,6 +25,7 @@ import ufrn.br.TRFNotifica.service.ProcessoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ufrn.br.TRFNotifica.service.UsuarioService;
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -41,45 +45,88 @@ public class ProcessoController {
 
     private final ObjectMapper mapper;
 
+    /*
     @PostMapping()// /processos?page=1
     public String getByNumero(@RequestParam (defaultValue = "1") String page, @RequestBody BuscaProcessoRequestDTO buscaProcessoRequestDTO) throws JSONException {
         return processoService.find(page, buscaProcessoRequestDTO);
     }
 
+     */
+    @GetMapping("/{identificador}")
+    public String getByIdentificador(@PathVariable String identificador) throws JSONException {
+        return processoService.searchByIdentificador(identificador);
+    }
+
+    @GetMapping("/local/{identificador}")
+    public Processo getByIdentificadorLocal(@PathVariable String identificador) throws JSONException {
+        return processoService.getByIdentificadorLocal(identificador);
+    }
+
+    @PostMapping()// /processos?page=1
+    public String getByNumero(@RequestParam int size,
+                              @RequestParam(defaultValue = "1") int nextTrf,
+                              @RequestParam(required = false) Long searchAfter,
+                              @RequestBody BuscaProcessoRequestDTO buscaProcessoRequestDTO) throws JSONException, IOException {
+        return processoService.find(size, searchAfter, nextTrf, buscaProcessoRequestDTO);
+    }
+
+    @GetMapping()
+    public List<Processo> findProcessosByUsuarioId(@AuthenticationPrincipal UserDetails userDetails){
+        Usuario usuario = null;
+        Optional<Credenciais> credenciais = credenciaisService.findByUsername(userDetails.getUsername());
+        if(credenciais.isPresent()){
+            usuario = usuarioService.findById(credenciais.get().getUsuario() .getId());
+        }
+        if(usuario != null){
+            return processoService.findProcessosByUsuarioId(usuario.getId());
+        }
+        return null;
+    }
+
     @Transactional
     @PostMapping("/save")
-    public ProcessoResponseDTO save(@RequestHeader("Username") String username, @RequestBody String processoString) throws JSONException, JsonProcessingException {
+    public ResponseEntity save(@AuthenticationPrincipal UserDetails userDetails, @RequestBody String processoString) throws JSONException, JsonProcessingException {
         Usuario usuario = null;
         JSONObject processoJson = new JSONObject(processoString);
-        JSONObject source = processoJson.getJSONObject("_source");
+        //JSONObject source = processoJson.getJSONObject("_source");
 
-        ProcessoRequestDTO dto = mapper.readValue(source.toString(), ProcessoRequestDTO.class);
-        Processo processo = processoMapper.toProjeto(dto);
-
-        Optional<Credenciais> credenciais = credenciaisService.findByUsername(username);
+        Optional<Credenciais> credenciais = credenciaisService.findByUsername(userDetails.getUsername());
         if(credenciais.isPresent()){
             usuario = usuarioService.findById(credenciais.get().getId());
         }
-        Processo processoSalvo = processoService.create(processo);
-        notificacaoService.createAndSave(usuario, processoSalvo);
-        ProcessoResponseDTO processoResponseDTO = processoMapper.toProcessoResponseDTO(processoSalvo);
-        return processoResponseDTO;
+        ProcessoRequestDTO dto = mapper.readValue(processoJson.toString(), ProcessoRequestDTO.class);
+        Processo processo = processoMapper.toProcesso(dto);
+        processoService.salvarProcesso(usuario, processo);
+        return ResponseEntity.noContent().build();//processoMapper.toProcessoResponseDTO(processoSalvo);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@RequestHeader("Username") String username, @PathVariable String id) {
-        Optional<Credenciais> credenciais = credenciaisService.findByUsername(username);
+    @DeleteMapping("/{identificador}")
+    public ResponseEntity delete(@AuthenticationPrincipal UserDetails userDetails, @PathVariable String identificador) {
+        //System.out.println("user details: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        //System.out.println("user details: " + userDetails.getUsername());
+        Optional<Credenciais> credenciais = credenciaisService.findByUsername(userDetails.getUsername());
         Optional<Notificacao> notificacao = null;
+        Optional<Processo> processoEncontrado;
         Usuario usuario = null;
         if(credenciais.isPresent()){
             usuario = usuarioService.findById(credenciais.get().getId());
         }
         if(usuario != null){
-            notificacao = notificacaoService.findByUsuarioIdAndProcessoId(usuario.getId(), id);
+            processoEncontrado = processoService.findByIdentificador(identificador);
+            if(processoEncontrado.isPresent()){
+                notificacao = notificacaoService.findByUsuarioIdAndProcessoId(usuario.getId(), processoEncontrado.get().getId());
+                if(notificacao.isPresent()){
+                    notificacaoService.delete(notificacao.get().getId());
+                    List<Notificacao> notificacaoProcessoList = notificacaoService.findByProcessoId(processoEncontrado.get().getId());
+                    if(notificacaoProcessoList.isEmpty()){
+                        processoService.delete(processoEncontrado.get().getId());
+                    }
+                }
+            }
         }
-        notificacaoService.delete(notificacao.get().getId());
-        processoService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+
 
 }

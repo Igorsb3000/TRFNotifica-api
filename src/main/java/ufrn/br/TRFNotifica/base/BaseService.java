@@ -39,7 +39,8 @@ public abstract class BaseService <Model extends BaseModel, Repository extends B
      * */
     @Transactional
     public Model findById(String id){
-        Model model = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Tarefa não encontrada!"));
+        System.out.println("CHAMOU O FINDBYID NO BASESERVICE");
+        Model model = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         return model;
     }
 
@@ -50,6 +51,10 @@ public abstract class BaseService <Model extends BaseModel, Repository extends B
      * */
     @Transactional
     public Model create(Model m){
+        /*Model model = this.findById(m.getId());
+        if(model != null){
+            return this.update(m);
+        }*/
         return repository.save(m);
     }
 

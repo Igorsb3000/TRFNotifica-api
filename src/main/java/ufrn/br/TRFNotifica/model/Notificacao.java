@@ -22,9 +22,4 @@ public class Notificacao {
     @ManyToOne
     @JoinColumn(name = "processo_id", referencedColumnName = "id", nullable = false)
     private Processo processo;
-
-    public Notificacao(Usuario usuario, Processo processo) {
-        this.usuario = usuario;
-        this.processo = processo;
-    }
 }
