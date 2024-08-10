@@ -1,6 +1,9 @@
 package ufrn.br.TRFNotifica.handler;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.UnavailableException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import ufrn.br.TRFNotifica.dto.ErrorMessageDTO;
+import ufrn.br.TRFNotifica.service.TokenService;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,10 +25,16 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ExceptionAdvisor {
     @ExceptionHandler(BadCredentialsException.class)
-    ResponseEntity<ErrorMessageDTO> handleEntityNotFoundException(BadCredentialsException ex, WebRequest request) {
+    ResponseEntity<ErrorMessageDTO> handleBadCredentialsException(BadCredentialsException ex, WebRequest request) {
         String msg = "Falha na autenticação. Verifique seu usuário e senha.";
         ErrorMessageDTO error = new ErrorMessageDTO(LocalDateTime.now(), HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED, msg, request.getDescription(false));
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+    }
+    @ExceptionHandler(EntityNotFoundException.class)
+    ResponseEntity<ErrorMessageDTO> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
+        String msg = "Item não encontrado.";
+        ErrorMessageDTO error = new ErrorMessageDTO(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND, msg, request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
     @ExceptionHandler(UsernameNotFoundException.class)
@@ -78,6 +88,7 @@ public class ExceptionAdvisor {
 
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorMessageDTO> handleGenericException(Exception ex, WebRequest request) {
+        System.out.println("EXCEPTION HANDLER GENERIC");
         String msg = "Ocorreu um erro interno no servidor. ";
         if(ex.getMessage().contains("Http") || ex.getMessage().contains("Exception")){
             msg += "Por favor, tente novamente mais tarde.";

@@ -2,13 +2,14 @@ package ufrn.br.TRFNotifica.messages;
 
 import ufrn.br.TRFNotifica.model.Assunto;
 import ufrn.br.TRFNotifica.model.Movimentacao;
+import ufrn.br.TRFNotifica.util.ProcessoJsonBuilderUtil;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class EmailMessages {
-    public static String messageToNewMovement(Movimentacao movimentacao, String nameUser){
+    public static String messageToNewMovement(Movimentacao movimentacao, String nameUser) {
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(movimentacao.getDataHora());
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -30,20 +31,9 @@ public class EmailMessages {
                 assuntosBuilder.append("\n- ").append(assunto.getCodigo()).append(": ").append(assunto.getNome()).append(";");
             }
         }
-        /*
-        return "<html><body><p><strong>Olá, " + nameUser + "!</strong></p>\n\n"
-                + "<p>Percebemos que houve uma nova movimentação no processo de número " + movimentacao.getProcesso().getNumero()
-                + ", cujos assuntos são: " + assuntosBuilder
-                + "</p>\n\n"
-                + "<p><strong>Detalhes da Movimentação:</strong></p>\n"
-                + "<p>Código: " + movimentacao.getCodigo() + "</p>\n"
-                + "<p>Nome: " + movimentacao.getNome() + "</p>\n"
-                + "<p>Data: " + formattedDate + "</p>\n"
-                + "<p>Hora: " + formattedTime + "</p>\n"
-                + "</body></html>";*/
 
         return "OLÁ, " + nameUser.toUpperCase() + "!\n\n"
-                + "Percebemos que houve uma nova movimentação no processo de número " + movimentacao.getProcesso().getNumero()
+                + "Percebemos que houve uma nova movimentação no processo de número " + ProcessoJsonBuilderUtil.formatProcessNumber(movimentacao.getProcesso().getNumero())
                 + ", cujos assuntos são: " + assuntosBuilder
                 + "\n\n"
                 + "DETALHES DA MOVIMENTAÇÃO:\n"

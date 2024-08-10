@@ -1,5 +1,6 @@
 package ufrn.br.TRFNotifica.util;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
@@ -7,43 +8,25 @@ import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class ProcessoJsonBuilderUtil {
 
-    public static String buildQuery(int size, Long searchAfter, String numero, Integer classeCodigo, Integer orgaoJulgadorCodigo) throws IOException, JsonProcessingException, JSONException {
+    public static String buildQuery(int size, Long searchAfter, String numero, Integer classeCodigo, Integer orgaoJulgadorCodigo) {
         List<Query> mustQueries = new ArrayList<>();
 
-        // Condicionalmente adiciona a query para numeroProcesso
-        if (numero != null && !numero.isEmpty()) {// adicionar método para retorno match
-            Query matchNumero = MatchQuery.of(m -> m
-                    .field("numeroProcesso")
-                    .query(numero)
-            )._toQuery();
-            mustQueries.add(matchNumero);
-
-        } else if(classeCodigo != null && orgaoJulgadorCodigo != null){
-            // Adiciona a query para classe.codigo
-            Query matchClasse = MatchQuery.of(m -> m
-                    .field("classe.codigo")
-                    .query(classeCodigo)
-            )._toQuery();
-            mustQueries.add(matchClasse);
-
-            // Adiciona a query para orgaoJulgador.codigo
-            Query matchOrgaoJulgador = MatchQuery.of(m -> m
-                    .field("orgaoJulgador.codigo")
-                    .query(orgaoJulgadorCodigo)
-            )._toQuery();
-            mustQueries.add(matchOrgaoJulgador);
+        // Adiciona as queries conforme os parametros
+        if (numero != null && !numero.isEmpty()) {
+            mustQueries.add(createMatchQuery("numeroProcesso", numero));
+        } else if (classeCodigo != null && orgaoJulgadorCodigo != null) {
+            mustQueries.add(createMatchQuery("classe.codigo", classeCodigo));
+            mustQueries.add(createMatchQuery("orgaoJulgador.codigo", orgaoJulgadorCodigo));
         }
 
         // Combina as queries usando bool must
@@ -51,7 +34,7 @@ public class ProcessoJsonBuilderUtil {
                 .must(mustQueries)
         )._toQuery();
 
-        // Define a ordenação por timestamp
+        // Define a ordenacao por timestamp
         SortOptions sortOptions = SortOptions.of(s -> s
                 .field(f -> f
                         .field("@timestamp")
@@ -71,10 +54,23 @@ public class ProcessoJsonBuilderUtil {
 
         JacksonJsonpMapper jsonpMapper = new JacksonJsonpMapper();
         String jsonString = JsonpUtils.toJsonString(searchRequestBuilder.build(), jsonpMapper);
-
-        System.out.println("Requisicao montada: " + jsonString);
         return jsonString;
     }
+
+    private static Query createMatchQuery(String field, String value) {
+        return MatchQuery.of(m -> m
+                .field(field)
+                .query(value)
+        )._toQuery();
+    }
+
+    private static Query createMatchQuery(String field, Integer value) {
+        return MatchQuery.of(m -> m
+                .field(field)
+                .query(value)
+        )._toQuery();
+    }
+
 
     public static String getJsonStringByIdentificador(String identificadorProcesso) throws JSONException {
         Query matchIdentificador = MatchQuery.of(m -> m
@@ -87,8 +83,21 @@ public class ProcessoJsonBuilderUtil {
 
         JacksonJsonpMapper jsonpMapper = new JacksonJsonpMapper();
         String jsonString = JsonpUtils.toJsonString(searchRequestBuilder.build(), jsonpMapper);
-
         return jsonString;
+    }
+
+    public static String formatProcessNumber(String rawProcessNumber) {
+        if (rawProcessNumber == null || rawProcessNumber.length() != 20) {
+            throw new IllegalArgumentException("O processo deve ter 20 caracteres.");
+        }
+
+        StringBuilder sb = new StringBuilder(rawProcessNumber);
+        sb.insert(7, '-');
+        sb.insert(10, '.');
+        sb.insert(15, '.');
+        sb.insert(17, '.');
+        sb.insert(20, '.');
+        return sb.toString();
     }
 
 }

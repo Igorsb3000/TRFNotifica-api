@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ufrn.br.TRFNotifica.base.BaseService;
 import ufrn.br.TRFNotifica.model.Credenciais;
+import ufrn.br.TRFNotifica.model.Usuario;
 import ufrn.br.TRFNotifica.repository.CredenciaisRepository;
 import ufrn.br.TRFNotifica.util.CriptografiaUtil;
 
@@ -35,6 +36,11 @@ public class CredenciaisService extends BaseService<Credenciais, CredenciaisRepo
         return credenciaisRepository.findCredenciaisByUsername(username);
     }
 
+    public boolean existsByUsername(String username){
+        return credenciaisRepository.existsByUsername(username);
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Credenciais> credenciaisOptional = repository.findCredenciaisByUsername(username);
@@ -49,6 +55,9 @@ public class CredenciaisService extends BaseService<Credenciais, CredenciaisRepo
             // Verificação de entrada não nula
             if (credenciais == null) {
                 throw new IllegalArgumentException("Credenciais não podem ser nulas");
+            }
+            if (credenciaisRepository.existsByUsername(credenciais.getUsername())) {
+                throw new Exception("Existe um cadastro com este 'usuário'. Por favor, tente outro.");
             }
             String decryptedPassword = CriptografiaUtil.decrypt(credenciais.getPassword(), clientSecret);
             String encodedPassword = encoder.encode(decryptedPassword);

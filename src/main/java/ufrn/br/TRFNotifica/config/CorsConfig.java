@@ -16,7 +16,8 @@ public class CorsConfig {
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilterRegistrationBean() {
         CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-        config.addAllowedOrigin("http://localhost");
+        //config.addAllowedOrigin("http://localhost");
+        config.addAllowedOrigin("*");
         config.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

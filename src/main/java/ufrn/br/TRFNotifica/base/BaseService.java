@@ -39,7 +39,6 @@ public abstract class BaseService <Model extends BaseModel, Repository extends B
      * */
     @Transactional
     public Model findById(String id){
-        System.out.println("CHAMOU O FINDBYID NO BASESERVICE");
         Model model = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Item não encontrado!"));
         return model;
     }

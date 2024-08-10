@@ -9,5 +9,7 @@ import java.util.Optional;
 @Repository
 public interface CredenciaisRepository extends BaseRepository<Credenciais> {
     Optional<Credenciais> findCredenciaisByUsername(String username);
+
+    boolean existsByUsername(String username);
 }
 

@@ -23,6 +23,7 @@ import ufrn.br.TRFNotifica.model.Notificacao;
 import ufrn.br.TRFNotifica.model.Processo;
 import ufrn.br.TRFNotifica.repository.NotificacaoRepository;
 import ufrn.br.TRFNotifica.repository.ProcessoRepository;
+import ufrn.br.TRFNotifica.util.ProcessoJsonBuilderUtil;
 
 import java.io.IOException;
 import java.net.URI;
@@ -81,93 +82,15 @@ public class SchedulingService {
 
     private static final String EVERY_THIRTY_SECONDS = "*/30 * * * * *";
 
+    private static final String EVERY_FIVE_MINUTES = "*/5 * * * * *";
+
+
     private final Logger logger = LoggerFactory.getLogger(SchedulingService.class);
 
     String url = "http://localhost:3000/hits";
 
 
-    /*
-    @Scheduled(cron = EVERY_THIRTY_SECONDS)
-    public void buscarProcessos() throws Exception {
-        List<Processo> processosList = processoRepository.findAll();
-
-        if(!processosList.isEmpty()){
-            for(Processo processo : processosList){
-                Processo processoApi = new Processo();
-                int quantidadeMovimentacoesProcessoBd = processo.getMovimentacoes().size();
-
-                if(processo.getTribunal().equalsIgnoreCase("TRF1")){
-                    logger.info("Enviando requisição ao TRF1");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf1);
-                } else if(processo.getTribunal().equalsIgnoreCase("TRF2")){
-                    logger.info("Enviando requisição ao TRF2");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf2);
-                } else if(processo.getTribunal().equalsIgnoreCase("TRF3")){
-                    logger.info("Enviando requisição ao TRF3");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf3);
-                } else if(processo.getTribunal().equalsIgnoreCase("TRF4")){
-                    logger.info("Enviando requisição ao TRF4");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf4);
-                } else if(processo.getTribunal().equalsIgnoreCase("TRF5")){
-                    logger.info("Enviando requisição ao TRF5");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf5);
-                } else if(processo.getTribunal().equalsIgnoreCase("TRF6")){
-                    logger.info("Enviando requisição ao TRF6");
-                    // sendRequestToApi(processo.getIdentificador(), urlTrf6);
-                }
-
-                var response = sendRequestToApi(processo.getIdentificador(), url);
-
-                if(checkStatusErro(response)){
-                    JSONObject responseProcesso = getProcess(response.body());
-                    // Para versão API DataJud: JSONObject processoJson = new JSONObject(responseProcesso.toString());
-                    JSONObject source = responseProcesso.getJSONObject("_source");
-                    ProcessoRequestDTO dto = mapper.readValue(source.toString(), ProcessoRequestDTO.class);
-                    processoApi = processoMapper.toProcesso(dto);
-                }
-                if(processoApi.getMovimentacoes() != null){
-                    Movimentacao ultimaMovimentacaoApi = processoApi.getMovimentacoes().get(processoApi.getMovimentacoes().size()-1);
-                    Movimentacao ultimaMovimentacaoBd = processo.getMovimentacoes().get(processo.getMovimentacoes().size()-1);
-
-                    // Verificando se o timestamp do processoAPI foi atualizado na API, caso sim devo atualizar no meu processo local
-                    Instant instantUltimaMovimentacaoBd = Instant.parse(ultimaMovimentacaoBd.getDataHora());//processo.getDataHoraUltimaAtualizacao()
-                    LocalDateTime dateTimeUltimaMovimentacaoBd = LocalDateTime.ofInstant(instantUltimaMovimentacaoBd, ZoneId.systemDefault());
-
-                    Instant instantUltimaMovimentacaoApi = Instant.parse(ultimaMovimentacaoApi.getDataHora());//processoApi.getDataHoraUltimaAtualizacao()
-                    LocalDateTime dateTimeUltimaMovimentacaoApi = LocalDateTime.ofInstant(instantUltimaMovimentacaoApi, ZoneId.systemDefault());
-
-                    // Houve atualização no processo - timestamp
-                    if(dateTimeUltimaMovimentacaoApi.isAfter(dateTimeUltimaMovimentacaoBd)){
-                        logger.info("Atualizando processo do BD...");
-                        Optional<Processo> processoAtualizado = processoMapper.copyData(processoApi, processo);
-                        processoAtualizado.ifPresent(value -> processoRepository.save(value));
-
-                        if(processoApi.getMovimentacoes().size() > quantidadeMovimentacoesProcessoBd){
-                            List<Movimentacao> novasMovimentacoesList = new ArrayList<>();
-                            int i = quantidadeMovimentacoesProcessoBd;
-
-                            while(i < processoApi.getMovimentacoes().size()){
-                                novasMovimentacoesList.add(processoApi.getMovimentacoes().get(i));
-                                i++;
-                            }
-
-                            processoAtualizado.ifPresent(value -> sendMail(processoAtualizado.get(), novasMovimentacoesList));
-                        }
-
-                    } else {
-                        logger.info("O processo com identificador: " + processo.getIdentificador() + " não tem atualização!");
-                    }
-                }
-
-
-            }
-        } else {
-            logger.info("Não existem processos na base de dados. Logo, não poderei buscar por atualizações.");
-        }
-    }
-    */
-
-    @Scheduled(cron = EVERY_THIRTY_SECONDS)
+    @Scheduled(cron = EVERY_FIVE_MINUTES)
     public void buscarProcessos() {
         try {
             int minInterval = 1000;  // 1 segundo
@@ -191,27 +114,27 @@ public class SchedulingService {
                         case "TRF1":
                             logger.info("Enviando requisição ao TRF1");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf1);
-                            // break;
+                            break;
                         case "TRF2":
                             logger.info("Enviando requisição ao TRF2");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf2);
-                            // break;
+                            break;
                         case "TRF3":
                             logger.info("Enviando requisição ao TRF3");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf3);
-                            // break;
+                            break;
                         case "TRF4":
                             logger.info("Enviando requisição ao TRF4");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf4);
-                            // break;
+                            break;
                         case "TRF5":
                             logger.info("Enviando requisição ao TRF5");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf5);
-                            // break;
+                            break;
                         case "TRF6":
                             logger.info("Enviando requisição ao TRF6");
                             // sendRequestToApi(processo.getIdentificador(), urlTrf6);
-                            // break;
+                            break;
                     }
 
                     var response = sendRequestToApi(processo.getIdentificador(), url);
@@ -220,7 +143,7 @@ public class SchedulingService {
                         JSONObject responseProcesso = getProcess(response.body());
                         JSONObject source;
                         ProcessoRequestDTO dto;
-                        if(responseProcesso.getJSONObject("_source") != null){
+                        if(responseProcesso.has("_source")){
                             source = responseProcesso.getJSONObject("_source");
                             dto = mapper.readValue(source.toString(), ProcessoRequestDTO.class);
                         } else {
@@ -279,40 +202,6 @@ public class SchedulingService {
     }
 
 
-
-//    private void sendMail177777777(Processo processo, List<Movimentacao> novasMovimentacoesList) {
-//        logger.info("Enviando emails....");
-//        List<Notificacao> notificacoesList = notificacaoRepository.findByProcessoId(processo.getId());
-//        Map<String, String> userContactInfoMap = new HashMap<>();
-//        String tituloEmail = "Movimentação do Processo nº ";
-//        // Buscar emails dos usuarios interessados em receber notificação sobre o processo
-//        for(Notificacao notificacao : notificacoesList){
-//            //emailsList.add(notificacao.getUsuario().getEmail());
-//            String email = notificacao.getUsuario().getEmail();
-//            String name = notificacao.getUsuario().getName();
-//            userContactInfoMap.put(email, name);
-//        }
-//        // Enviar a nova movimentacao para todos os e-mails dos usuários interessados
-//        for(Movimentacao movimentacao : novasMovimentacoesList){
-//            for(Map.Entry<String, String> userContact : userContactInfoMap.entrySet()){
-//                try {
-//                    mailService.sendSimpleMessage(userContact.getKey(),
-//                            tituloEmail + processo.getNumero(),
-//                            EmailMessages.messageToNewMovement(movimentacao, userContact.getValue()));
-//                } catch (Exception e) {
-//                    logger.error("Erro ao enviar e-mail para: " + userContact.getKey(), e);
-//                    failedEmailService.saveFailedEmail(userContact.getKey(), tituloEmail + processo.getNumero(),
-//                            EmailMessages.messageToNewMovement(movimentacao, userContact.getValue()));
-//                }
-//                /*mailService.sendSimpleMessage(userContact.getKey(),
-//                        "Movimentação do Processo nº " + processo.getNumero(),
-//                        EmailMessages.messageToNewMovement(movimentacao, userContact.getValue()));*/
-//            }
-//        }
-//    }
-
-
-
     public void sendMail(Processo processo, List<Movimentacao> novasMovimentacoesList) {
         logger.info("Iniciando o envio dos e-mails...");
         List<Notificacao> notificacoesList = notificacaoRepository.findByProcessoId(processo.getId());
@@ -334,7 +223,7 @@ public class SchedulingService {
     }
 
     private void sendMovementNotifications(Processo processo, Movimentacao movimentacao, Map<String, String> userContactInfoMap) {
-        String tituloEmail = "Movimentação do Processo nº " + processo.getNumero();
+        String tituloEmail = "Movimentação do Processo nº " + ProcessoJsonBuilderUtil.formatProcessNumber(processo.getNumero());
 
         for (Map.Entry<String, String> userContact : userContactInfoMap.entrySet()) {
             String recipientEmail = userContact.getKey();
